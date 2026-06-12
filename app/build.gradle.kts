@@ -50,7 +50,7 @@ android {
         targetSdk = 34
         versionCode = 154
         versionName = "1.5.4-DEV ($gitHash)"
-        multiDexEnabled = true
+        multiDexEnabled = false
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -76,7 +76,6 @@ android {
         }
 
         ndk {
-            abiFilters.add("armeabi-v7a")
             abiFilters.add("arm64-v8a")
         }
 
@@ -103,7 +102,7 @@ android {
     buildTypes {
         all {
             signingConfig =
-                if (signingConfigs["config"].storeFile != null) signingConfigs["config"] else signingConfigs["debug"]
+                signingConfigs["debug"]
             if (project.hasProperty("minify") && project.properties["minify"].toString()
                     .toBoolean()
             ) {
@@ -115,7 +114,8 @@ android {
             }
         }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
