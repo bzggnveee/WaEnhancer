@@ -211,6 +211,12 @@ public class Others extends Feature {
         propsInteger.put(8522, status_style);
         propsInteger.put(8521, status_style);
 
+        // Status in Group
+        propsBoolean.put(13956,true);
+        propsBoolean.put(13957,true);
+
+        // new popup menu in chat
+        Others.propsBoolean.put(21541,false);
 
         hookProps();
         hookSearchbar(filterChats);
